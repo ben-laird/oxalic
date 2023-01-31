@@ -6,10 +6,7 @@ type AnyVariant = Variant<any>;
 
 type AnyVariantObject = Record<string, AnyVariant>;
 
-type AnyRusticEnum = RusticEnum<
-  AnyVariantObject,
-  VariantObjectDetails<AnyVariantObject, "keys">
->;
+type AnyRusticEnum = RusticEnum<any, any>;
 
 type AnyRusticEnumElement = AnyRusticEnum | AnyVariantObject;
 
@@ -49,7 +46,7 @@ type ArmParams<T extends AnyVariantObject, U> = {
   [K in keyof T]: T[K] extends UnitVariant ? () => U : (value: T[K]) => U;
 };
 
-type Match<T extends AnyVariantObject, U> = (arms: ArmParams<T, U>) => U;
+type Match<T extends AnyVariantObject> = <U>(arms: ArmParams<T, U>) => U;
 
 /**
  * A class that holds a value of a certain type, allowing comprehensive control flow
@@ -79,8 +76,8 @@ export abstract class RusticEnum<
    * A construct to match against all possible types
    * the value in the Rustic Enum could take
    */
-  match = (<V>(arms: ArmParams<T, V>) =>
-    arms[this.enumType](this.enumValue)) satisfies Match<T, any>;
+  match: Match<T> = <U>(arms: ArmParams<T, U>) =>
+    arms[this.enumType](this.enumValue);
 
   // filter = <X extends V, W>(type: X, action: (value: T[X] | None) => W) =>
   //   action(this.type === type ? this.value : new None());
@@ -123,11 +120,11 @@ export module V {
   > = Record<T, U>;
 
   export type Interface<T extends Record<string, any>> = {
-    [K in keyof T]: T[K] extends never | UnitVariant
-      ? UnitVariant
-      : T[K] extends "null" | NullVariant
+    [K in keyof T]: T[K] extends null
       ? NullVariant
-      : T[K] extends Variant<any>
+      : T[K] extends undefined
+      ? UnitVariant
+      : T[K] extends AnyVariant
       ? T[K]
       : Variant<T[K]>;
   };

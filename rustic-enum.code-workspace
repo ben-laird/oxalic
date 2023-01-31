@@ -13,6 +13,10 @@
       "path": "./packages/rustic-enum-std"
     },
     {
+      "name": "UI",
+      "path": "./packages/ui"
+    },
+    {
       "name": "Web App",
       "path": "./apps/web"
     },

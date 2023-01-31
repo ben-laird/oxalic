@@ -48,6 +48,18 @@ type ArmParams<T extends AnyVariantObject, U> = {
 
 type Match<T extends AnyVariantObject> = <U>(arms: ArmParams<T, U>) => U;
 
+type IfElse<T extends AnyVariantObject> = <U>(
+  type: V.Keys<T>,
+  ifArm: (value: T[typeof type]) => U,
+  elseArm: () => U
+) => U;
+
+type IfLet<T extends AnyVariantObject> = (
+  type: V.Keys<T>,
+  ifArm: (value: T[typeof type]) => void,
+  elseArm?: () => void
+) => void;
+
 /**
  * A class that holds a value of a certain type, allowing comprehensive control flow
  * by matching against all possible types the value could be
@@ -56,20 +68,13 @@ export abstract class RusticEnum<
   T extends AnyVariantObject,
   V extends V.Keys<T>
 > {
-  private readonly variantType: V;
-  private readonly variantValue: T[V];
+  protected readonly enumType: V;
+  protected readonly enumValue: T[V];
 
   constructor(variant: { type: V; value: T[V] }) {
     const { type, value } = variant;
-    this.variantType = type;
-    this.variantValue = value;
-  }
-
-  get enumType() {
-    return this.variantType;
-  }
-  get enumValue() {
-    return this.variantValue;
+    this.enumType = type;
+    this.enumValue = value;
   }
 
   /**
@@ -79,8 +84,21 @@ export abstract class RusticEnum<
   match: Match<T> = <U>(arms: ArmParams<T, U>) =>
     arms[this.enumType](this.enumValue);
 
-  // filter = <X extends V, W>(type: X, action: (value: T[X] | None) => W) =>
-  //   action(this.type === type ? this.value : new None());
+  ifElse: IfElse<T> = (type, ifArm, elseArm) => {
+    if (this.enumType === type) {
+      return ifArm(this.enumValue);
+    } else {
+      return elseArm();
+    }
+  };
+
+  ifLet: IfLet<T> = (type, ifArm, elseArm) => {
+    if (this.enumType === type) {
+      return ifArm(this.enumValue);
+    } else if(elseArm) {
+      return elseArm();
+    }
+  };
 }
 
 // ========

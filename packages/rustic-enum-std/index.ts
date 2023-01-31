@@ -1,2 +1,2 @@
-export * as Std from './rusticStd';
-export * from "./rusticStd";
+export * as Std from './src/rusticStd';
+export * from "./src/rusticStd";

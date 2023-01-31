@@ -1,2 +1,2 @@
-export * as Enum from "./rusticEnum"
-export * from './rusticEnum';
+export * as Enum from "./src/rusticEnum"
+export * from './src/rusticEnum';

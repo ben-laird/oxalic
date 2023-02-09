@@ -1,0 +1,19 @@
+{
+  "name": "@rustic-enum/smart",
+  "version": "0.0.0",
+  "description": "Smart Rustic Enums that rely on contextual data",
+  "type": "module",
+  "module": "index.ts",
+  "svelte": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+    "format": "prettier --write --ignore-path=../../.prettierignore ."
+  },
+  "dependencies": {
+    "@rustic-enum/core": "workspace:0.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*"
+  }
+}

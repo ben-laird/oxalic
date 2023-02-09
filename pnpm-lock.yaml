@@ -97,6 +97,15 @@ importers:
     devDependencies:
       eslint-config-custom: link:../eslint-config-custom
 
+  packages/smart:
+    specifiers:
+      '@rustic-enum/core': workspace:0.0.0
+      eslint-config-custom: workspace:*
+    dependencies:
+      '@rustic-enum/core': link:../core
+    devDependencies:
+      eslint-config-custom: link:../eslint-config-custom
+
   packages/ui:
     specifiers:
       '@rustic-enum/plus': workspace:^0.0.0

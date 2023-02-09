@@ -12,8 +12,7 @@
     "format": "prettier --write --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
-    "rustic-enum": "workspace:^0.0.0",
-    "rustic-enum-std": "workspace:^0.0.0"
+    "@rustic-enum/plus": "workspace:^0.0.0"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",

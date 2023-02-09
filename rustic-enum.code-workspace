@@ -5,12 +5,12 @@
       "path": "."
     },
     {
-      "name": "Rustic Enum",
-      "path": "./packages/rustic-enum"
+      "name": "Rustic Enum Core",
+      "path": "./packages/core"
     },
     {
-      "name": "Standard Library",
-      "path": "./packages/rustic-enum-std"
+      "name": "Rustic Enum Plus",
+      "path": "./packages/plus"
     },
     {
       "name": "UI",

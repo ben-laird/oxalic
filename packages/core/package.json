@@ -1,5 +1,5 @@
 {
-  "name": "rustic-enum",
+  "name": "@rustic-enum/core",
   "version": "0.0.0",
   "description": "Rust's enum functionality in TypeScript",
   "type": "module",

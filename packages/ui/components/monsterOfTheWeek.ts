@@ -1,4 +1,4 @@
-import { RusticEnum, V, Variant } from "rustic-enum";
+import { RusticEnum, V, Variant } from "@rustic-enum/plus";
 
 export interface RollDetails {
   roll: number;
@@ -41,3 +41,5 @@ export const rollDice = () => {
         }),
       });
 };
+
+const memes = rollDice().isMaybe("Failure").expect("sss").value.roll;

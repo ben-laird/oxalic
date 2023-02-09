@@ -1,4 +1,4 @@
-import { Some, Option, None } from "./rusticStd";
+import { Some, Option, None } from "@rustic-enum/core";
 
 const some = <T>(value: T): Option<T> => new Some(value).asOption();
 
@@ -37,7 +37,7 @@ const toOptional =
   };
 
 const optionalDefined = toOptional(
-  <T>(arg: T | undefined | null): arg is T => arg != null
+  <T>(arg: T | undefined | null): arg is T => arg != null,
 );
 
 const arr = [1, 2];

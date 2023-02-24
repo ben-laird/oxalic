@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Variant, RusticEnum, Discriminate, Ok, Err } from "@rustic-enum/core";
 
 module ctxGuard {
-  export type Object<T, C> = Record<string, (v: T, ctx: C) => v is T>;
+  export type CoreObject<T, C> = Record<string, (v: T, ctx: C) => v is T>;
 
-  export type Any = Object<any, any>;
+  export type Any = CoreObject<any, any>;
 
   export type Type<T extends (v: any, ctx: any) => v is any> = T extends (
     v: any,
-    ctx: any,
+    ctx: any
   ) => v is infer U
     ? U
     : never;
@@ -19,12 +20,12 @@ module ctxGuard {
   };
 }
 
-class GuardEnumCtx<C, T extends ctxGuard.Object<any, C>> extends RusticEnum<
+class GuardEnumCtx<C, T extends ctxGuard.CoreObject<any, C>> extends RusticEnum<
   ctxGuard.VariantObject<T>
 > {
   constructor(
     readonly ctx: C,
-    variant: Discriminate<ctxGuard.VariantObject<T>>,
+    variant: Discriminate<ctxGuard.VariantObject<T>>
   ) {
     super(variant);
   }
@@ -33,8 +34,8 @@ class GuardEnumCtx<C, T extends ctxGuard.Object<any, C>> extends RusticEnum<
 export const guardFilterCtx = <
   T,
   C,
-  G extends ctxGuard.Object<T, C>,
-  E,
+  G extends ctxGuard.CoreObject<T, C>,
+  E
 >(params: {
   value: T;
   ctx: C;
@@ -50,7 +51,7 @@ export const guardFilterCtx = <
             type,
             value: new Variant(value as ctxGuard.Type<G[keyof G]>),
           }
-        : [],
+        : []
     )
     .at(0);
 
@@ -61,8 +62,8 @@ export const guardFilterCtx = <
 
 export const guardFactoryCtx = <
   C,
-  G extends ctxGuard.Object<any, C>,
-  E,
+  G extends ctxGuard.CoreObject<any, C>,
+  E
 >(params: {
   ctx: C;
   guards: G;
@@ -78,7 +79,7 @@ export const guardFactoryCtx = <
               type,
               value: new Variant(value as ctxGuard.Type<G[keyof G]>),
             }
-          : [],
+          : []
       )
       .at(0);
 

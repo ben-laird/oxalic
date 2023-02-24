@@ -1,15 +1,15 @@
 import { Variant, RusticEnum, Ok, Err, Discriminate } from "@rustic-enum/core";
 
-// Regular Guard Logic
-
 module guard {
-  export type Type<T> = T extends (x: any) => x is infer U ? U : never;
+  export type Type<T> = T extends (x: unknown) => x is infer U ? U : never;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   export type Arg<T> = T extends (x: infer U) => x is any ? U : never;
 
-  export type Object<T> = Record<string, (v: T) => v is T>;
+  export type CoreObject<T> = Record<string, (v: T) => v is T>;
 
-  export type Any = Object<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export type Any = CoreObject<any>;
 
   export type VariantObject<T extends Any> = {
     [K in keyof T]: Variant<Type<T[K]>>;
@@ -20,9 +20,9 @@ class GuardEnum<T extends guard.Any> extends RusticEnum<
   guard.VariantObject<T>
 > {}
 
-export const guardFilter = <T, G extends guard.Object<T>, E>(
+export const guardFilter = <T, G extends guard.CoreObject<T>, E>(
   value: T,
-  guardParams: { guards: G; error: E },
+  guardParams: { guards: G; error: E }
 ) => {
   const { guards, error } = guardParams;
 
@@ -33,7 +33,7 @@ export const guardFilter = <T, G extends guard.Object<T>, E>(
             type,
             value: new Variant(value as guard.Type<G[keyof G]>),
           }
-        : [],
+        : []
     )
     .at(0);
 
@@ -56,7 +56,7 @@ export const guardFactory = <G extends guard.Any, E>(guardParams: {
               type,
               value: new Variant(value as guard.Type<G[keyof G]>),
             }
-          : [],
+          : []
       )
       .at(0);
 

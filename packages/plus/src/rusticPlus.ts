@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Discriminate,
   Err,
@@ -11,7 +12,7 @@ import {
   Variant,
 } from "@rustic-enum/core";
 
-type GuardedType<T> = T extends (x: any) => x is infer U ? U : never;
+type GuardedType<T> = T extends (x: unknown) => x is infer U ? U : never;
 
 type GuardedArg<T> = T extends (x: infer U) => x is any ? U : never;
 
@@ -30,7 +31,7 @@ export module en {
 
   export const guardFilter = <T, G extends GuardObject<T>, E>(
     value: T,
-    guardParams: { guards: G; error: E },
+    guardParams: { guards: G; error: E }
   ) => {
     const { guards, error } = guardParams;
 
@@ -41,7 +42,7 @@ export module en {
               type,
               value: new Variant(value as GuardedType<G[keyof G]>),
             }
-          : [],
+          : []
       )
       .at(0);
 
@@ -64,7 +65,7 @@ export module en {
                 type,
                 value: new Variant(value as GuardedType<G[keyof G]>),
               }
-            : [],
+            : []
         )
         .at(0);
 
@@ -80,7 +81,7 @@ export module en {
 
   type CtxGuardedType<T extends (v: any, ctx: any) => v is any> = T extends (
     v: any,
-    ctx: any,
+    ctx: any
   ) => v is infer U
     ? U
     : never;
@@ -98,7 +99,7 @@ export module en {
   > {
     constructor(
       readonly ctx: C,
-      variant: Discriminate<CtxGuardVariantObject<T>>,
+      variant: Discriminate<CtxGuardVariantObject<T>>
     ) {
       super(variant);
     }
@@ -108,7 +109,7 @@ export module en {
     T,
     C,
     G extends CtxGuardObject<T, C>,
-    E,
+    E
   >(params: {
     value: T;
     ctx: C;
@@ -124,7 +125,7 @@ export module en {
               type,
               value: new Variant(value as CtxGuardedType<G[keyof G]>),
             }
-          : [],
+          : []
       )
       .at(0);
 
@@ -136,7 +137,7 @@ export module en {
   export const guardFactoryCtx = <
     C,
     G extends CtxGuardObject<any, C>,
-    E,
+    E
   >(params: {
     ctx: C;
     guards: G;
@@ -152,7 +153,7 @@ export module en {
                 type,
                 value: new Variant(value as CtxGuardedType<G[keyof G]>),
               }
-            : [],
+            : []
         )
         .at(0);
 
@@ -177,7 +178,7 @@ export module opt {
 export module res {
   export type infer<
     T extends Result<any, any>,
-    U extends "Ok" | "Err",
+    U extends "Ok" | "Err"
   > = T extends Result<infer O, infer E>
     ? {
         Ok: O;
@@ -189,7 +190,7 @@ export module res {
 
   export const assertVia = <T, E>(
     predicate: (value: T) => boolean,
-    error: E,
+    error: E
   ) => {
     return (value: T): Result<T, E> =>
       predicate(value) ? new Ok(value).asResult() : new Err(error).asResult();
@@ -197,7 +198,7 @@ export module res {
 
   export const assertViaCtx = <U, E>(
     predicate: (ctx: U) => boolean,
-    failure: E,
+    failure: E
   ) => {
     return <T>(ctx: U, success: T): Result<T, E> =>
       predicate(ctx)
@@ -220,7 +221,7 @@ export module res {
   export const expectViaCtx = <U>(predicate: (ctx: U) => boolean) => {
     return <T, E>(
       ctx: U,
-      results: { success: T; failure: E },
+      results: { success: T; failure: E }
     ): Result<T, E> => {
       const { success, failure } = results;
 
@@ -234,13 +235,13 @@ export module res {
 
   export const expectViaNullity = <T, E>(
     value: T,
-    error: E,
+    error: E
   ): Result<NonNullable<T>, E> => {
     return value ? new Ok(value).asResult() : new Err(error).asResult();
   };
 
   export const expectViaGuard = <T, S extends T>(
-    guard: (value: T) => value is S,
+    guard: (value: T) => value is S
   ) => {
     return <E>(value: T, error: E) =>
       guard(value) ? new Ok(value).asResult<E>() : new Err(error).asResult<S>();
@@ -251,7 +252,7 @@ export module res {
     errorParams: {
       guard: (error: unknown) => error is E;
       fallback: F;
-    },
+    }
   ];
 
   export const errCast = <T extends any[], U, E, F>(
@@ -277,7 +278,7 @@ export module res {
     errorParams: {
       guards: E;
       fallback: F;
-    },
+    }
   ];
 
   type ErrGuards<E extends AnyErrGuards> = V.PureInterface<{
@@ -299,16 +300,16 @@ export module res {
       } catch (err) {
         const potErr = Object.keys(guards)
           .flatMap<Discriminate<ErrGuards<E>>>((key) =>
-            guards[key](err) ? { type: key, value: err } : [],
+            guards[key](err) ? { type: key, value: err } : []
           )
           .at(0);
 
         return potErr
           ? new Err(
-              new Ok(new PotentialError(potErr)).asResult<F>(),
+              new Ok(new PotentialError(potErr)).asResult<F>()
             ).asResult<U>()
           : new Err(
-              new Err(fallback).asResult<PotentialError<E>>(),
+              new Err(fallback).asResult<PotentialError<E>>()
             ).asResult<U>();
       }
     };

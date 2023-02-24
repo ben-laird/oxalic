@@ -9,17 +9,21 @@ import {
 import { res } from "./rusticPlus";
 
 export module branch {
-  export type Object<T, E> = Record<string, (value: T) => Result<any, E>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export type CoreObject<T, E> = Record<string, (value: T) => Result<any, E>>;
 
-  export type Any = Object<any, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export type Any = CoreObject<any, any>;
 
   export type VariantObject<B extends Any> = {
     [K in keyof B]: Variant<res.infer<ReturnType<B[K]>, "Ok">>;
   };
 
-  export type infer<B extends Any> = B extends Object<infer U, any> ? U : never;
+  export type Infer<B extends Any> = B extends CoreObject<infer U, unknown>
+    ? U
+    : never;
 
-  export const via = <T, E, B extends branch.Object<T, E>>(params: {
+  export const via = <T, E, B extends branch.CoreObject<T, E>>(params: {
     value: T;
     error: E;
     branches: B;
@@ -34,7 +38,7 @@ export module branch {
           ? {
               type,
               value: new Variant(
-                result.ok().expect("Result should have been Ok"),
+                result.ok().expect("Result should have been Ok")
               ),
             }
           : [];
@@ -46,13 +50,13 @@ export module branch {
       : new Err(error).asResult<Branch<B>>();
   };
 
-  export const viaFactory = <E, B extends Object<any, E>>(params: {
+  export const viaFactory = <E, B extends CoreObject<unknown, E>>(params: {
     branches: B;
     error: E;
   }) => {
     const { branches, error } = params;
 
-    return (value: branch.infer<B>): Result<Branch<B>, E> => {
+    return (value: branch.Infer<B>): Result<Branch<B>, E> => {
       const branched = Object.keys(branches)
         .flatMap<Discriminate<VariantObject<B>>>((type) => {
           const result = branches[type](value);
@@ -61,7 +65,7 @@ export module branch {
             ? {
                 type,
                 value: new Variant(
-                  result.ok().expect("Result should have been Ok"),
+                  result.ok().expect("Result should have been Ok")
                 ),
               }
             : [];

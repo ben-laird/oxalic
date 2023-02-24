@@ -16,7 +16,7 @@
     "cov": "vitest run --coverage",
     "cov:watch": "vitest run --coverage",
     "cov:detail": "vitest run --coverage && open-cli index.html",
-    "lint": "eslint . --ext .ts && prettier --no-config --check 'src/**/*.ts'",
+    "lint": "tsc && eslint . --ext .ts && prettier --no-config --check 'src/**/*.ts'",
     "format": "eslint . --fix --ext .ts && prettier --no-config --write 'src/**/*.ts'",
     "uncache": "rm -rf .turbo",
     "clean": "rm -rf .turbo && rm -rf dist && rm -rf node_modules"

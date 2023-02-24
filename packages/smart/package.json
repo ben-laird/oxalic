@@ -10,7 +10,8 @@
   "scripts": {
     "start": "vitest",
     "dev": "vitest",
-    "build": "tsup src --format esm,cjs",
+    "build:dev": "tsup src",
+    "build": "pnpm build:dev --minify",
     "test": "vitest run",
     "test:watch": "vitest",
     "cov": "vitest run --coverage",

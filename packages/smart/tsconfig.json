@@ -1,4 +1,4 @@
 {
-  "extends": "../tlt-tsconfig/tsconfig.lib",
+  "extends": "../tlt-tsconfig/tsconfig.lib.json",
   "include": ["src"]
 }

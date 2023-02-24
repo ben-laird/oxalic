@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "ESLint Config",
+      "path": "./packages/eslint-config-custom"
+    },
+    {
       "name": "Rustic Enum Core",
       "path": "./packages/core"
     },
@@ -11,18 +15,6 @@
     {
       "name": "Rustic Enum Smart",
       "path": "./packages/smart"
-    },
-    {
-      "name": "UI",
-      "path": "./packages/ui"
-    },
-    {
-      "name": "Web App",
-      "path": "./apps/web"
-    },
-    {
-      "name": "Docs",
-      "path": "./apps/docs"
     },
     {
       "name": "Turbo",

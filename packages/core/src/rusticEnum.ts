@@ -2,10 +2,12 @@
 // AnyType Logic
 // ========
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyVariant = Variant<any>;
 
 export type AnyVariantObject = Record<string, AnyVariant>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyRusticEnum = RusticEnum<any>;
 
 type AnyRusticEnumElement = AnyRusticEnum | AnyVariantObject;
@@ -34,7 +36,7 @@ export class Variant<T> {
       test: (value: T) => boolean;
       fallback: T;
     },
-    lambda: (value: T, ctx: this) => U,
+    lambda: (value: T, ctx: this) => U
   ) => {
     const { test, fallback } = testParams;
     const { value } = this;
@@ -76,34 +78,34 @@ type PartialMatchParams<T extends AnyVariantObject, U> = Partial<
 };
 
 type PartialMatch<T extends AnyVariantObject> = <U>(
-  arms: PartialMatchParams<T, U>,
+  arms: PartialMatchParams<T, U>
 ) => U;
 
 type IfLet<T extends AnyVariantObject> = <U, D extends V.Keys<T>>(
   type: D,
   ifArm: (value: T[D]) => U,
-  elseArm: () => U,
+  elseArm: () => U
 ) => U;
 
 type Is<T extends AnyVariantObject> = (type: keyof T) => boolean;
 
 type IsAnd<T extends AnyVariantObject> = <V extends keyof T>(
   type: V,
-  predicate: (value: T[V]) => boolean,
+  predicate: (value: T[V]) => boolean
 ) => boolean;
 
 type IsVariant<T extends AnyVariantObject> = <U extends keyof T>(
   type: U,
-  variant: Discriminate<T>,
+  variant: Discriminate<T>
 ) => variant is { type: U; value: T[U] };
 
 type IsMaybe<T extends AnyVariantObject> = <U extends V.Keys<T>>(
-  type: U,
+  type: U
 ) => Option<T[U]>;
 
 type IsAndMaybe<T extends AnyVariantObject> = <U extends V.Keys<T>>(
   type: U,
-  predicate: (value: T[U]) => boolean,
+  predicate: (value: T[U]) => boolean
 ) => Option<T[U]>;
 
 /**
@@ -115,7 +117,7 @@ export abstract class RusticEnum<T extends AnyVariantObject> {
 
   protected isV: IsVariant<T> = (
     type,
-    variant,
+    variant
   ): variant is { type: typeof type; value: T[typeof type] } =>
     variant.type === type;
 
@@ -207,7 +209,7 @@ export module V {
     U extends AnyVariant ? U : Variant<U>
   >;
 
-  export type Interface<T extends Record<string, any>> = {
+  export type Interface<T extends Record<string, unknown>> = {
     [K in keyof T]: T[K] extends null
       ? NullVariant
       : T[K] extends undefined
@@ -217,7 +219,7 @@ export module V {
       : Variant<T[K]>;
   };
 
-  export type PureInterface<T extends Record<string, any>> = {
+  export type PureInterface<T extends Record<string, unknown>> = {
     [K in keyof T]: Variant<T[K]>;
   };
 
@@ -229,7 +231,7 @@ export module V {
    */
   export type Get<
     T extends AnyVariantObject,
-    U extends "keys" | "values",
+    U extends "keys" | "values"
   > = U extends "keys" ? keyof T : T[keyof T];
 
   export type Keys<T extends AnyVariantObject> = V.Get<T, "keys">;
@@ -248,11 +250,11 @@ export module V {
 }
 export module From {
   export type To<T extends AnyRusticEnum, V extends V.Ext<T>> = (
-    value: V.Infer<T>[V],
+    value: V.Infer<T>[V]
   ) => T;
 
   export type New<T extends AnyRusticEnum> = (
-    input: Discriminate<V.Infer<T>>,
+    input: Discriminate<V.Infer<T>>
   ) => T;
 
   export type ToObject<T extends AnyRusticEnum> = {
@@ -382,12 +384,14 @@ export class Option<T> extends RusticEnum<OptionI<T>> {
 // ========
 
 export class Ok<T> extends Variant<T> {
+  // @ts-ignore
   private static readonly state: unique symbol = Symbol("Ok");
 
   asResult = <U>() => new Result<T, U>({ type: "Ok", value: this });
 }
 
 export class Err<T> extends Variant<T> {
+  // @ts-ignore
   private static readonly state: unique symbol = Symbol("Err");
 
   asResult = <U>() => new Result<U, T>({ type: "Err", value: this });
@@ -495,5 +499,6 @@ export class Result<T, E> extends RusticEnum<ResultInterface<T, E>> {
 
   unwrapErr = () => this.expect("An error occurred when unwrapping a value!");
 
-  and = <U>(res: Result<U, E>) => {};
+  // TODO finish and method
+  // and = <U>(res: Result<U, E>) => {};
 }

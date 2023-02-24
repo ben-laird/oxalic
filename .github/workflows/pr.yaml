@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x.x]
+        node-version: [18.x.x]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Tests
         run: pnpm run cov
-      - name: Check if PR has Changeset
-        run: pnpm changeset status
       - name: Run Linters
         run: pnpm run lint
+      - name: Check if PR has Changeset
+        run: pnpm changeset status

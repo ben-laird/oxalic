@@ -16,7 +16,8 @@
     "clear": "turbo run clear",
     "clean": "turbo run clean && rm -rf node_modules",
     "reinstall": "pnpm clean && pnpm i",
-    "changeset": "changeset",
+    "change": "changeset",
+    "change:empty": "changeset --empty",
     "version-packages": "changeset version",
     "release": "FORCE_COLOR=1 turbo run build --filter='!docs' --no-cache --color && changeset publish"
   },

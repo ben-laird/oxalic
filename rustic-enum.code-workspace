@@ -2,7 +2,7 @@
   "folders": [
     {
       "name": "ESLint Config",
-      "path": "./packages/eslint-config-custom"
+      "path": "./packages/eslint-config-typelaunch-turbo"
     },
     {
       "name": "Rustic Enum Core",

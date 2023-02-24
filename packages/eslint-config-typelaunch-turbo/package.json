@@ -1,0 +1,21 @@
+{
+  "name": "eslint-config-typelaunch-turbo",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.cjs",
+  "license": "MIT",
+  "scripts": {
+    "uncache": "rm -rf .turbo",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-turbo": "latest",
+    "eslint-plugin-prettier": "^4.2.1"
+  },
+  "devDependencies": {
+    "eslint-define-config": "^1.15.0"
+  }
+}

@@ -1,14 +1,12 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
   "changelog": "@changesets/cli/changelog",
+  "baseBranch": "main",
   "commit": true,
   "fixed": [],
   "linked": [],
   "access": "public",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "eslint-config-typelaunch-turbo",
-    "@typelaunch-turbo/tsconfig"
-  ],
+  "ignore": ["eslint-config-typelaunch-turbo", "@typelaunch-turbo/tsconfig"],
   "privatePackages": { "version": true, "tag": true }
 }

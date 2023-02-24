@@ -1,0 +1,19 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "uncache": "rm -rf .turbo",
+    "clear": "rm -rf .turbo && rm -rf dist && rm -rf coverage",
+    "clean": "pnpm clear && rm -rf node_modules",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^2.0.15"
+  }
+}

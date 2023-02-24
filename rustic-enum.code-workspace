@@ -13,6 +13,10 @@
       "path": "./packages/smart"
     },
     {
+      "name": "Documentation",
+      "path": "./apps/docs"
+    },
+    {
       "name": "Main",
       "path": "."
     }

@@ -33,8 +33,12 @@
       "persistent": true
     },
 
-    "lint": {},
-    "format": {},
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "format": {
+      "dependsOn": ["^build"]
+    },
 
     "uncache": {
       "cache": false

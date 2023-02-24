@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 // @ts-check
 const { defineConfig } = require("eslint-define-config");
 
@@ -14,5 +16,8 @@ module.exports = defineConfig({
   rules: {
     "spaced-comment": "warn",
     yoda: "error",
+    "@typescript-eslint/prefer-namespace-keyword": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   },
 });

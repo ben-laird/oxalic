@@ -175,6 +175,16 @@ export module opt {
 }
 
 export module res {
+  export type infer<
+    T extends Result<any, any>,
+    U extends "Ok" | "Err",
+  > = T extends Result<infer O, infer E>
+    ? {
+        Ok: O;
+        Err: E;
+      }[U]
+    : never;
+
   // Assertions - ways to create a result with a predetermined error
 
   export const assertVia = <T, E>(
@@ -195,8 +205,8 @@ export module res {
         : new Err(failure).asResult<T>();
   };
 
-  export const assertViaNullity = <T, E>(error: E) => {
-    return (value: T): Result<NonNullable<T>, E> =>
+  export const assertViaNullity = <E>(error: E) => {
+    return <T>(value: T): Result<NonNullable<T>, E> =>
       value ? new Ok(value).asResult() : new Err(error).asResult();
   };
 

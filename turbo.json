@@ -1,14 +1,44 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".svelte-kit/**", ".vercel/**"]
+    "start": {
+      "cache": false,
+      "persistent": true
     },
-    "lint": {},
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "preview": {
+      "cache": false,
+      "persistent": true
+    },
+
+    "test": {},
+    "test:watch": {
+      "persistent": true
+    },
+    "cov": {
+      "outputs": ["coverage/**"]
+    },
+    "cov:watch": {
+      "outputs": ["coverage/**"],
+      "persistent": true
+    },
+
+    "lint": {},
+    "format": {},
+
+    "uncache": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
     }
   }
 }

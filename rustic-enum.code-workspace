@@ -1,10 +1,6 @@
 {
   "folders": [
     {
-      "name": "ESLint Config",
-      "path": "./packages/eslint-config-typelaunch-turbo"
-    },
-    {
       "name": "Rustic Enum Core",
       "path": "./packages/core"
     },
@@ -17,7 +13,7 @@
       "path": "./packages/smart"
     },
     {
-      "name": "Turbo",
+      "name": "Main",
       "path": "."
     }
   ]

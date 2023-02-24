@@ -1,17 +1,36 @@
 {
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write ."
+    "start": "FORCE_COLOR=1 turbo run start --no-cache --continue --color",
+    "dev": "FORCE_COLOR=1 turbo run dev --no-cache --continue --color",
+    "build": "FORCE_COLOR=1 turbo run build --color",
+    "preview": "FORCE_COLOR=1 turbo run preview --no-cache --continue --color",
+    "test": "FORCE_COLOR=1 turbo run test --color",
+    "test:watch": "FORCE_COLOR=1 turbo run test:watch --color",
+    "cov": "FORCE_COLOR=1 turbo run cov --color",
+    "cov:watch": "FORCE_COLOR=1 turbo run cov:watch --color",
+    "lint": "FORCE_COLOR=1 turbo run lint --color",
+    "format": "FORCE_COLOR=1 turbo run format --color",
+    "uncache": "turbo run uncache && rm -rf .turbo",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "reinstall": "pnpm clean && pnpm i",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "FORCE_COLOR=1 turbo run build --filter='!docs' --no-cache --color && changeset publish"
   },
   "devDependencies": {
-    "eslint": "^8.0.0",
-    "eslint-config-custom": "workspace:*",
-    "prettier": "^2.7.1",
-    "prettier-plugin-svelte": "^2.7.0",
-    "turbo": "latest"
+    "@changesets/cli": "latest",
+    "@typelaunch-turbo/tsconfig": "workspace:*",
+    "eslint-config-typelaunch-turbo": "workspace:*",
+    "fast-check": "latest",
+    "open-cli": "^7.1.0",
+    "prettier": "latest",
+    "tsup": "latest",
+    "turbo": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-plugin-dts": "latest",
+    "vitest": "latest"
   },
   "packageManager": "pnpm@7.15.0"
 }

@@ -1,16 +1,24 @@
 {
   "name": "@rustic-enum/core",
   "version": "0.0.0",
+  "private": true,
   "description": "Rust's enum functionality in TypeScript",
-  "type": "module",
-  "module": "index.ts",
-  "svelte": "index.ts",
   "license": "MIT",
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
-    "format": "prettier --write --ignore-path=../../.prettierignore ."
-  },
-  "devDependencies": {
-    "eslint-config-custom": "workspace:*"
+    "start": "vitest",
+    "dev": "vitest",
+    "build": "tsup src --format esm,cjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cov": "vitest run --coverage",
+    "cov:watch": "vitest run --coverage",
+    "cov:detail": "vitest run --coverage && open-cli index.html",
+    "lint": "eslint . --ext .ts && prettier --no-config --check 'src/**/*.ts'",
+    "format": "eslint . --fix --ext .ts && prettier --no-config --write 'src/**/*.ts'",
+    "uncache": "rm -rf .turbo",
+    "clean": "rm -rf .turbo && rm -rf dist && rm -rf node_modules"
   }
 }

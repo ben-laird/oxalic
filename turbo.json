@@ -10,17 +10,25 @@
       "cache": false,
       "persistent": true
     },
+    "build:dev": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build:dev"]
+    },
     "build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^build"]
     },
     "preview": {
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
 
-    "test": {},
+    "test": {
+      "dependsOn": ["^build:dev"]
+    },
     "test:watch": {
+      "dependsOn": ["^build:dev"],
       "persistent": true
     },
     "cov": {
@@ -29,15 +37,15 @@
     },
     "cov:watch": {
       "outputs": ["coverage/**"],
-      "dependsOn": ["^cov"],
+      "dependsOn": ["^cov:watch"],
       "persistent": true
     },
 
     "lint": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build:dev"]
     },
     "format": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build:dev"]
     },
 
     "uncache": {

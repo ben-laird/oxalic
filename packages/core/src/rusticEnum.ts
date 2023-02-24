@@ -4,7 +4,7 @@
 
 type AnyVariant = Variant<any>;
 
-type AnyVariantObject = Record<string, AnyVariant>;
+export type AnyVariantObject = Record<string, AnyVariant>;
 
 type AnyRusticEnum = RusticEnum<any>;
 
@@ -79,9 +79,9 @@ type PartialMatch<T extends AnyVariantObject> = <U>(
   arms: PartialMatchParams<T, U>,
 ) => U;
 
-type IfLet<T extends AnyVariantObject> = <U>(
-  type: V.Keys<T>,
-  ifArm: (value: T[typeof type]) => U,
+type IfLet<T extends AnyVariantObject> = <U, D extends V.Keys<T>>(
+  type: D,
+  ifArm: (value: T[D]) => U,
   elseArm: () => U,
 ) => U;
 
@@ -175,6 +175,23 @@ export abstract class RusticEnum<T extends AnyVariantObject> {
       const { value } = variant;
       return new Some(value).asOption();
     } else return new None().asOption();
+  };
+
+  iter = (): Iterable<Discriminate<T>> => {
+    const { variant } = this;
+
+    return {
+      [Symbol.iterator]() {
+        return {
+          next() {
+            return {
+              done: true,
+              value: variant,
+            };
+          },
+        };
+      },
+    };
   };
 }
 

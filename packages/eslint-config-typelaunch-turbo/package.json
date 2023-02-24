@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "uncache": "rm -rf .turbo",
-    "clean": "rm -rf .turbo && rm -rf node_modules"
+    "clear": "rm -rf .turbo && rm -rf dist && rm -rf coverage",
+    "clean": "pnpm clear && rm -rf node_modules"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.53.0",

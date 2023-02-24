@@ -12,6 +12,7 @@
     "lint": "FORCE_COLOR=1 turbo run lint --color",
     "format": "FORCE_COLOR=1 turbo run format --color",
     "uncache": "turbo run uncache && rm -rf .turbo",
+    "clear": "turbo run clear",
     "clean": "turbo run clean && rm -rf node_modules",
     "reinstall": "pnpm clean && pnpm i",
     "changeset": "changeset",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@changesets/cli": "latest",
     "@typelaunch-turbo/tsconfig": "workspace:*",
+    "@vitest/coverage-c8": "latest",
     "eslint-config-typelaunch-turbo": "workspace:*",
     "fast-check": "latest",
     "open-cli": "^7.1.0",
@@ -31,6 +33,5 @@
     "vite": "latest",
     "vite-plugin-dts": "latest",
     "vitest": "latest"
-  },
-  "packageManager": "pnpm@7.15.0"
+  }
 }

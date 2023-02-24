@@ -24,10 +24,12 @@
       "persistent": true
     },
     "cov": {
-      "outputs": ["coverage/**"]
+      "outputs": ["coverage/**"],
+      "dependsOn": ["^cov"]
     },
     "cov:watch": {
       "outputs": ["coverage/**"],
+      "dependsOn": ["^cov"],
       "persistent": true
     },
 
@@ -35,6 +37,9 @@
     "format": {},
 
     "uncache": {
+      "cache": false
+    },
+    "clear": {
       "cache": false
     },
     "clean": {

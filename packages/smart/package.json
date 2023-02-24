@@ -16,10 +16,11 @@
     "cov": "vitest run --coverage",
     "cov:watch": "vitest run --coverage",
     "cov:detail": "vitest run --coverage && open-cli index.html",
-    "lint": "eslint . --ext .ts && prettier --no-config --check 'src/**/*.ts'",
-    "format": "tsc && eslint . --fix --ext .ts && prettier --no-config --write 'src/**/*.ts'",
+    "lint": "tsc && eslint src --ext .ts && prettier --no-config --check 'src/**/*.ts'",
+    "format": "tsc && eslint src --fix --ext .ts && prettier --no-config --write 'src/**/*.ts'",
     "uncache": "rm -rf .turbo",
-    "clean": "rm -rf .turbo && rm -rf dist && rm -rf node_modules"
+    "clear": "rm -rf .turbo && rm -rf dist && rm -rf coverage",
+    "clean": "pnpm clear && rm -rf node_modules"
   },
   "dependencies": {
     "@rustic-enum/core": "workspace:0.0.0"

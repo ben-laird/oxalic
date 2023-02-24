@@ -72,7 +72,7 @@ export module duo {
 
   export const splitViaNullity = <T, F>(
     value: T,
-    backup: F,
+    backup: F
   ): Duo<NonNullable<T>, F> => {
     return value
       ? new Duo<NonNullable<T>, F>({
@@ -85,8 +85,9 @@ export module duo {
         });
   };
 
-  export type infer<
+  export type Infer<
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     T extends Duo<any, any>,
-    C extends "A" | "B",
+    C extends "A" | "B"
   > = T extends Duo<infer A, infer B> ? { A: A; B: B }[C] : never;
 }

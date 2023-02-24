@@ -1,8 +1,8 @@
 {
-  "name": "@rustic-enum/plus",
+  "name": "@rustic-enum/smart",
   "version": "0.0.0",
   "private": true,
-  "description": "Rust's Option and Result functionality in TypeScript via rustic-enum",
+  "description": "Smart Rustic Enums that rely on contextual data",
   "license": "MIT",
   "type": "module",
   "module": "dist/index.js",

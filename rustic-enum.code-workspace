@@ -1,10 +1,6 @@
 {
   "folders": [
     {
-      "name": "Turbo",
-      "path": "."
-    },
-    {
       "name": "Rustic Enum Core",
       "path": "./packages/core"
     },
@@ -13,28 +9,12 @@
       "path": "./packages/plus"
     },
     {
-      "name": "UI",
-      "path": "./packages/ui"
+      "name": "Rustic Enum Smart",
+      "path": "./packages/smart"
     },
     {
-      "name": "Web App",
-      "path": "./apps/web"
-    },
-    {
-      "name": "Docs",
-      "path": "./apps/docs"
+      "name": "Main",
+      "path": "."
     }
-  ],
-  "settings": {
-    "files.exclude": {
-      "**/.git": true,
-      "**/.svn": true,
-      "**/.hg": true,
-      "**/CVS": true,
-      "**/.DS_Store": true,
-      "**/Thumbs.db": true,
-      "**/apps": true,
-      "**/packages": true
-    }
-  }
+  ]
 }

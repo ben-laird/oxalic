@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run:
+  pr-check:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,9 +24,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Run Tests
-        run: pnpm run cov
-      - name: Run Linters
-        run: pnpm run lint
       - name: Check if PR has Changeset
         run: pnpm changeset status

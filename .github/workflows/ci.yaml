@@ -1,4 +1,4 @@
-name: Push CI
+name: CI
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  setup:
+  ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x.x]
+        node-version: [16.x.x, 18.x.x]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Run Tests
-        run: pnpm run test
+      - name: Run Tests + Coverage
+        run: pnpm run cov
       - name: Run Linters
         run: pnpm run lint

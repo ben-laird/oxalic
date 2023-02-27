@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@changesets/cli": "latest",
-    "@typelaunch-turbo/tsconfig": "workspace:*",
+    "@oxalic/tsconfig": "workspace:*",
     "@vitest/coverage-c8": "latest",
-    "eslint-config-typelaunch-turbo": "workspace:*",
+    "@oxalic/eslint-config-oxalic": "workspace:*",
     "fast-check": "latest",
     "open-cli": "^7.1.0",
     "prettier": "latest",

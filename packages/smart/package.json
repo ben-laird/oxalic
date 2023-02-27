@@ -1,5 +1,5 @@
 {
-  "name": "@rustic-enum/smart",
+  "name": "@oxalic/smart",
   "version": "0.0.0",
   "private": true,
   "description": "Smart Rustic Enums that rely on contextual data",
@@ -24,6 +24,6 @@
     "clean": "pnpm clear && rm -rf node_modules"
   },
   "dependencies": {
-    "@rustic-enum/core": "workspace:0.0.0"
+    "@oxalic/core": "workspace:0.0.0"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@rustic-enum/core",
+  "name": "@oxalic/core",
   "version": "0.0.0",
   "private": true,
   "description": "Rust's enum functionality in TypeScript",

@@ -7,6 +7,6 @@
   "linked": [],
   "access": "public",
   "updateInternalDependencies": "patch",
-  "ignore": ["eslint-config-typelaunch-turbo", "@typelaunch-turbo/tsconfig"],
+  "ignore": [],
   "privatePackages": { "version": true, "tag": true }
 }

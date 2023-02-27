@@ -1,8 +1,8 @@
 {
-  "name": "@rustic-enum/plus",
+  "name": "@oxalic/plus",
   "version": "0.0.0",
   "private": true,
-  "description": "Rust's Option and Result functionality in TypeScript via rustic-enum",
+  "description": "Rust's Option and Result functionality in TypeScript via oxalic",
   "license": "MIT",
   "type": "module",
   "module": "dist/index.js",
@@ -24,6 +24,6 @@
     "clean": "pnpm clear && rm -rf node_modules"
   },
   "dependencies": {
-    "@rustic-enum/core": "workspace:0.0.0"
+    "@oxalic/core": "workspace:0.0.0"
   }
 }

@@ -1,5 +1,5 @@
 ---
-"docs": patch
+"@oxalic/docs": patch
 ---
 
 add tailwind

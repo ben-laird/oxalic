@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Variant, RusticEnum, Discriminate, Ok, Err } from "@rustic-enum/core";
+import { Variant, RusticEnum, Discriminate, Ok, Err } from "@oxalic/core";
 
 module ctxGuard {
   export type CoreObject<T, C> = Record<string, (v: T, ctx: C) => v is T>;

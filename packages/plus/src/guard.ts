@@ -1,4 +1,4 @@
-import { Variant, RusticEnum, Ok, Err, Discriminate } from "@rustic-enum/core";
+import { Variant, RusticEnum, Ok, Err, Discriminate } from "@oxalic/core";
 
 module guard {
   export type Type<T> = T extends (x: unknown) => x is infer U ? U : never;

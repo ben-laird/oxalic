@@ -1,4 +1,4 @@
-import { Some, Option, None } from "@rustic-enum/core";
+import { Some, Option, None } from "@oxalic/core";
 
 const some = <T>(value: T): Option<T> => new Some(value).asOption();
 

@@ -10,7 +10,7 @@ import {
   Some,
   V,
   Variant,
-} from "@rustic-enum/core";
+} from "@oxalic/core";
 
 type GuardedType<T> = T extends (x: unknown) => x is infer U ? U : never;
 

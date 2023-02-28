@@ -3,7 +3,7 @@ import {
   Discriminate,
   RusticEnum,
   UnitVariant,
-} from "@rustic-enum/core";
+} from "@oxalic/core";
 
 type ArmParamsSm<T extends AVO, C, U> = {
   [K in keyof T]: T[K] extends UnitVariant

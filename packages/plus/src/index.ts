@@ -1,5 +1,5 @@
 // Core re-export
-export * from "@rustic-enum/core";
+export * from "@oxalic/core";
 // Other exports
 export * from "./duo";
 export * from "./helpers";

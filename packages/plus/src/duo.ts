@@ -1,4 +1,4 @@
-import { None, RusticEnum, Some, Variant } from "@rustic-enum/core";
+import { None, RusticEnum, Some, Variant } from "@oxalic/core";
 
 export class Duo<A, B> extends RusticEnum<{
   A: Variant<A>;

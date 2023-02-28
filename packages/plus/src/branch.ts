@@ -5,7 +5,7 @@ import {
   Result,
   RusticEnum,
   Variant,
-} from "@rustic-enum/core";
+} from "@oxalic/core";
 import { res } from "./rusticPlus";
 
 export module branch {

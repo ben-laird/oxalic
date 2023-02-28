@@ -1,4 +1,4 @@
-import { RusticEnum, UnitVariant, V } from "@rustic-enum/core";
+import { RusticEnum, UnitVariant, V } from "@oxalic/core";
 
 export class Radio<E extends string, C = UnitVariant> extends RusticEnum<
   V.Enum<E, C>

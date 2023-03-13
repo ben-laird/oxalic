@@ -19,7 +19,8 @@
     "change": "changeset",
     "change:empty": "changeset --empty",
     "version-packages": "changeset version",
-    "release": "FORCE_COLOR=1 turbo run build --filter='!docs' --no-cache --color && changeset publish"
+    "release": "FORCE_COLOR=1 turbo run build --filter='!docs' --no-cache --color && changeset publish",
+    "postinstall": "pnpm build:dev"
   },
   "devDependencies": {
     "@changesets/cli": "latest",

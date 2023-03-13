@@ -6,7 +6,7 @@ import {
   RusticEnum,
   Variant,
 } from "@oxalic/core";
-import { res } from "./rusticPlus";
+import { res } from "./plus";
 
 export module branch {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

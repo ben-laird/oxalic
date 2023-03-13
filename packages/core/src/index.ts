@@ -1,2 +1,5 @@
-export * as Enum from "./rusticEnum";
-export * from "./rusticEnum";
+export * as Enum from "./enum";
+export * from "./enum";
+
+export * as Struct from "./struct";
+export * from "./struct";
